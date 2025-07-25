@@ -5,9 +5,12 @@ This file is a script to request nutrient data from the spoonacular api
 import requests
 import json
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DATA_DIR = "/Users/rileymcbean/nutrition-project/data/raw"
-SPOONACULAR_API_KEY = '22c3d08e9c1e45c0a3d2176515d5dd3c'
+SPOONACULAR_API_KEY = os.getenv("SPOONACULAR_API_KEY")
 SPOONACULAR_URL = f"https://api.spoonacular.com/recipes/716429/information?apiKey={SPOONACULAR_API_KEY}"
 
 try:
