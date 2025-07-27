@@ -88,7 +88,7 @@ def main():
     # Iterate over the alphabet to find a variety of ingredients
     for letter in list(string.ascii_lowercase):
         logging.info(f"--- Searching for ingredients starting with '{letter}' ---")
-        ingredients = fetch_ingredients(letter, limit=5) # Adjust limit as needed
+        ingredients = fetch_ingredients(letter, limit=1) # Adjust limit as needed
 
         if ingredients is None:
             continue
