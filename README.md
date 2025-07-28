@@ -1,34 +1,33 @@
-"""
-This is the readme file for the nutrition project, I want to extract data from spoonacular api and build a simple pipeline to then report and investigate the relationship between ingredients and the nutrients they contain, as well as the functional effects on the body
-"""
-
 # Nutrition Project
 
 This project aims to extract nutritional data from the Spoonacular API and build a simple data pipeline to analyze the relationship between ingredients, their nutrient content, and their functional effects on the body.
 
 ## Project Structure
 
-- `scripts/`: Contains Python scripts for data extraction, processing, and analysis.
+- `scripts/`: Contains Python scripts for the data pipeline.
+  - `scripts/extract/`: Scripts for fetching raw data from APIs.
+  - `scripts/transform/`: Scripts for cleaning, flattening, and transforming raw data.
 - `data/`: Stores raw and processed data.
-  - `data/raw/`: Raw data extracted from APIs.
-  - `data/processed/`: Processed and cleaned data.
-- `notebooks/`: Jupyter notebooks for exploratory data analysis and model development.
-- `reports/`: Generated reports and visualizations.
+  - `data/raw/spoonacular_ingredients/`: Raw ingredient JSON files from Spoonacular.
+  - `data/processed/`: Processed and cleaned data, including the final `ingredients.csv`.
+- `notebooks/`: Jupyter notebooks for exploratory data analysis.
 - `requirements.txt`: Lists all project dependencies.
+- `.env`: Environment file for storing secrets like API keys (must be created locally).
 - `.gitignore`: Specifies files and directories to be ignored by Git.
 
 ## Setup and Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/nutrition-project.git
+   git clone <your-repository-url>
    cd nutrition-project
    ```
 
 2. **Create a virtual environment (recommended):**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: `venv\Scripts\activate`
+   source venv/bin/activate  # On macOS/Linux
+   # On Windows: venv\Scripts\activate
    ```
 
 3. **Install dependencies:**
@@ -36,15 +35,20 @@ This project aims to extract nutritional data from the Spoonacular API and build
    pip install -r requirements.txt
    ```
 
-4. **Obtain Spoonacular API Key:**
+4. **Set up Environment Variables:**
    - Sign up for a free API key at [Spoonacular API](https://spoonacular.com/food-api).
-   - Replace `'YOUR_SPOONACULAR_API_KEY'` in `scripts/get_spoonacular_data.py` with your actual API key.
+   - Create a file named `.env` in the root of the project directory.
+   - Add your API key to the `.env` file like this:
+     ```
+     SPOONACULAR_API_KEY='your_actual_api_key_here'
+     ```
 
 ## Usage
 
-### 1. Extract Data from Spoonacular API
+The data pipeline is a two-step process.
 
-Run the script to fetch recipe data from the Spoonacular API:
+### 1. Extract Raw Data
 
+Run the extraction script to fetch ingredient data from the Spoonacular API. This script searches for ingredients alphabetically, fetches detailed information, and saves each one as a separate JSON file.
 ```bash
-python scripts/get_spoonacular_data.py
+python scripts/extract/get_spoonacular_data.py
