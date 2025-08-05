@@ -52,3 +52,4 @@ The data pipeline is a two-step process.
 Run the extraction script to fetch ingredient data from the Spoonacular API. This script searches for ingredients alphabetically, fetches detailed information, and saves each one as a separate JSON file.
 ```bash
 python scripts/extract/get_spoonacular_data.py
+# secure-storage-scanning
